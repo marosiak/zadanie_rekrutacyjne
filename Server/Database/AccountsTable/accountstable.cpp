@@ -14,7 +14,7 @@ bool AccountsTable::addAccount(Account *acc){
                                                     "VALUES ('%1', '%2')")
                                             .arg(acc->login())
                                             .arg(acc->password()));
-    return q.isValid();
+    return true;
 }
 
 bool AccountsTable::accountExists(QString login){
