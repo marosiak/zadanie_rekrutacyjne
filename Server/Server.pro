@@ -1,5 +1,5 @@
 QT -= gui
-QT += network sql
+QT += network sql xml
 
 CONFIG += c++11 console
 CONFIG -= app_bundle
@@ -18,9 +18,15 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += main.cpp \
     Server/server.cpp \
     ConnectionHandler/connectionhandler.cpp \
-    Database/DatabaseAccess/databaseaccess.cpp
+    Database/DatabaseAccess/databaseaccess.cpp \
+    Database/Account/account.cpp \
+    Database/AccountsTable/accountstable.cpp \
+    Xml/ResponseGenerator/responsegenerator.cpp
 
 HEADERS += \
     Server/server.h \
     ConnectionHandler/connectionhandler.h \
-    Database/DatabaseAccess/databaseaccess.h
+    Database/DatabaseAccess/databaseaccess.h \
+    Database/Account/account.h \
+    Database/AccountsTable/accountstable.h \
+    Xml/ResponseGenerator/responsegenerator.h

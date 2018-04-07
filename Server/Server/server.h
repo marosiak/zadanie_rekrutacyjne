@@ -4,6 +4,9 @@
 #include <QObject>
 #include <QDebug>
 #include <ConnectionHandler/connectionhandler.h>
+#include <Database/DatabaseAccess/databaseaccess.h>
+#include <Database/AccountsTable/accountstable.h>
+#include <Database/Account/account.h>
 
 class Server : public QTcpServer {
     Q_OBJECT
@@ -12,8 +15,9 @@ public:
     void startServer(int port);
 signals:
 
-public slots:
-
+private:
+    DatabaseAccess* dba;
+    AccountsTable* accounts;
 protected:
     void incomingConnection(qintptr socketDescriptor);
 };

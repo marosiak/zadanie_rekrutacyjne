@@ -28,6 +28,6 @@ bool DatabaseAccess::connect( const QString& server,
     }
 }
 
-bool DatabaseAccess::execute(QString query){
-    database->exec(query);
+QSqlQuery DatabaseAccess::execute(QString query){
+    return database->exec(query);
 }

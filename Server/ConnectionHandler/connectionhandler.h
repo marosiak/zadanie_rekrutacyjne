@@ -5,11 +5,15 @@
 #include <QObject>
 #include <QTcpSocket>
 #include <QDebug>
+#include <Database/AccountsTable/accountstable.h>
+#include <Database/Account/account.h>
+#include <QtXml>
+#include <Xml/ResponseGenerator/responsegenerator.h>
 
 class ConnectionHandler : public QThread {
     Q_OBJECT
 public:
-    explicit ConnectionHandler(qintptr id, QObject *parent = 0);
+    explicit ConnectionHandler(qintptr id, AccountsTable* act ,QObject *parent = 0);
     void run();
 
 public slots:
@@ -19,6 +23,7 @@ public slots:
 private:
     QTcpSocket *socket;
     qintptr socketDescriptor;
+    AccountsTable* accountsTable;
 };
 
 #endif // CONNECTIONHANDLER_H

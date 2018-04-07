@@ -1,18 +1,17 @@
 #include <QCoreApplication>
 #include <Server/server.h>
 
-
-// only for test
-#include <Database/DatabaseAccess/databaseaccess.h>
+// test only
+#include <Xml/ResponseGenerator/responsegenerator.h>
 
 int main(int argc, char *argv[]) {
     QCoreApplication a(argc, argv);
     Server srv;
     srv.startServer(2222);
 
-    // test only
-    DatabaseAccess dba;
-    dba.connect("127.0.0.1", "rekrutacja", "postgres", "admin");
-    dba.execute("CREATE TABLE IF NOT EXISTS accounts(login \"char\"[], password \"char\"[])");
+    ResponseGenerator rg(LoginFailed);
+    qDebug() << rg.getOutput();
+
+
     return a.exec();
 }

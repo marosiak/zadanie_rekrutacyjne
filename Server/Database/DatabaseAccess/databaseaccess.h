@@ -10,7 +10,7 @@ public:
     explicit DatabaseAccess(QObject *parent = nullptr);
     ~DatabaseAccess();
     bool connect(const QString &server, const QString &databaseName, const QString &userName, const QString &password);
-    bool execute(QString query);
+    QSqlQuery execute(QString query);
 signals:
 
 private:
