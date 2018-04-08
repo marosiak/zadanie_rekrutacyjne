@@ -50,11 +50,11 @@ void ConnectionHandler::readyRead() {
         // check if correct
         if(accountsTable->login(new Account(login, password))){
             qDebug() << socketDescriptor<<"success login";
-            ResponseGenerator rpg(LoginSuccess);
+            ResponseGenerator rpg(true, "Success");
             socket->write(QByteArray::fromStdString(rpg.getOutput().toStdString()));
         } else {
             // failed
-            ResponseGenerator rpg(LoginFailed);
+            ResponseGenerator rpg(false, "Cannot log-in");
             socket->write(QByteArray::fromStdString(rpg.getOutput().toStdString()));
         }
     }
@@ -62,11 +62,11 @@ void ConnectionHandler::readyRead() {
         if(accountsTable->addAccount(new Account(login, password))){
             // success
             qDebug() << socketDescriptor<<"success register";
-            ResponseGenerator rpg(RegisterSuccess);
+            ResponseGenerator rpg(true, "Success");
             socket->write(QByteArray::fromStdString(rpg.getOutput().toStdString()));
         } else {
             // failed
-            ResponseGenerator rpg(RegisterFailed);
+            ResponseGenerator rpg(false, "Cannot register");
             socket->write(QByteArray::fromStdString(rpg.getOutput().toStdString()));
         }
     }

@@ -4,6 +4,8 @@
 #include <QObject>
 #include <Database/DatabaseAccess/databaseaccess.h>
 #include <Database/Account/account.h>
+#include <QCryptographicHash>
+
 class AccountsTable {
 public:
     AccountsTable(DatabaseAccess* databaseAccess);

@@ -4,24 +4,23 @@
 #include <QString>
 #include <QtXml>
 
-enum Response {
-    LoginSuccess,
-    LoginFailed,
-    RegisterSuccess,
-    RegisterFailed
-};
-
 class ResponseGenerator {
 public:
-    ResponseGenerator(Response type);
+    ResponseGenerator(bool succ, QString in);
     ResponseGenerator();
 
     QString getOutput();
-    void setType(const Response &type);
-    Response type() const;
+
+
+    bool getSuccess() const;
+    void setSuccess(bool value);
+
+    QString getInfo() const;
+    void setInfo(const QString &value);
 
 private:
-    Response m_type;
+    bool success=false;
+    QString info="error";
 };
 
 #endif // RESPONSEGENERATOR_H

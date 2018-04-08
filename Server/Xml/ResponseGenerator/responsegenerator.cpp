@@ -1,7 +1,8 @@
 #include "responsegenerator.h"
 
-ResponseGenerator::ResponseGenerator(Response type){
-    m_type = type;
+ResponseGenerator::ResponseGenerator(bool succ, QString in){
+    setInfo(in);
+    setSuccess(succ);
 }
 
 QString ResponseGenerator::getOutput(){
@@ -9,28 +10,11 @@ QString ResponseGenerator::getOutput(){
     QDomElement root = document.createElement("response");
     QDomElement el = document.createElement("info");
 
-    switch(m_type){
-    case RegisterSuccess:
-        el.setAttribute("info", "Account created successfully");
-        break;
-    case LoginSuccess:
-        el.setAttribute("info", "Logged in");
-        break;
-    case RegisterFailed:
-        el.setAttribute("info", "You are unable to create account");
-        break;
-    case LoginFailed:
-        el.setAttribute("info", "Cannot log-in");
-        break;
-    default:
-        el.setAttribute("info", "Error");
-        break;
-    }
-    if(m_type == LoginFailed || RegisterFailed){
-        root.setAttribute("type", "failed");
-    }
-    if(m_type == LoginSuccess || RegisterSuccess){
+    el.setAttribute("info", getInfo());
+    if(getSuccess()){
         root.setAttribute("type", "success");
+    } else {
+        root.setAttribute("type", "failed");
     }
     root.appendChild(el);
     document.appendChild(root);
@@ -38,5 +22,22 @@ QString ResponseGenerator::getOutput(){
     return document.toString();
 }
 
-void ResponseGenerator::setType(const Response &type){ m_type = type; }
-Response ResponseGenerator::type() const { return m_type; }
+bool ResponseGenerator::getSuccess() const
+{
+    return success;
+}
+
+void ResponseGenerator::setSuccess(bool value)
+{
+    success = value;
+}
+
+QString ResponseGenerator::getInfo() const
+{
+    return info;
+}
+
+void ResponseGenerator::setInfo(const QString &value)
+{
+    info = value;
+}
